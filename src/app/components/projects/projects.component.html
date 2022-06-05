@@ -1,0 +1,12 @@
+<div class="container">
+    <ob-project-item 
+        *ngFor="let prjct of projects"
+        [id]="prjct.project_id"
+        [name]="prjct.project_name"
+        [crDate]="prjct.create_date"
+        [deadline]="prjct.deadline"
+        [price]="prjct.price"
+        [descr]="prjct.descr"
+        [customerName]="prjct.customer_name"
+        ></ob-project-item>
+</div>

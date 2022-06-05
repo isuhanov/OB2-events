@@ -1,0 +1,35 @@
+.header {
+    height: 80px;
+    box-shadow: 2px 2px 15px 0px rgba(0, 0, 0, 0.1);
+    background-color: rgb(253, 253, 253);
+
+    .navbar {
+        ul {
+            height: 80px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 30px;
+        }
+    }
+
+    .links {
+        font-size: 17px;
+        color: #9F3ED5;
+        &:hover {
+            color: #48036F;
+        }
+        &:active {
+            color: #AD66D5;
+        }
+    }
+
+    .links-active {
+        text-decoration: underline;
+        color: #ce7aff;
+        font-size: 19px;
+    }
+    
+}
+
