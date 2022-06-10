@@ -1,9 +1,28 @@
-<div class="pr-item">
+<div class="pr-item table-tr" [class.even-white]="index%2!==0">
     <p class="pr-item__id">{{ id }}</p>
     <p class="pr-item__name">{{ name }}</p>
-    <p class="pr-item__cr-date">{{ crDate }}</p>
-    <p class="pr-item__deadline">{{ deadline }}</p>
+    <p class="pr-item__cr-date">{{ crDate.slice(0, 10) }}</p>
+    <p class="pr-item__deadline">{{ deadline.slice(0, 10) }}</p>
     <p class="pr-item__price">{{ price }}</p>
     <p class="pr-item__descr">{{ descr }}</p>
     <p class="pr-item__customer-name">{{ customerName }}</p>
+    <p class="table-tr__btn">
+        <button class="btn">
+            <span class="material-symbols-outlined">
+                delete
+            </span>
+        </button>
+        <button class="btn">
+            <a class="links" [routerLink]="['/workers', id]" routerLinkActive="links-active">
+                <span class="material-symbols-outlined">
+                    person
+                </span>
+            </a>
+        </button>
+        <button class="btn">
+            <span class="material-symbols-outlined">
+                edit
+            </span>
+        </button>
+    </p>
 </div>

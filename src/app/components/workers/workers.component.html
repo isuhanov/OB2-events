@@ -1,0 +1,23 @@
+<div class="table-container">
+    <h2 class="main-title">Сотрудники</h2>
+    <div class="table-tr">
+        <p class="header">ID</p>
+        <p class="header">ФИО</p>
+        <p class="header">Дата рождения</p>
+        <p class="header">Почта</p>
+        <p class="header">Телефон</p>
+        <p class="header">Должность</p>
+        <p class="header">З/П</p>
+        <p class="header"></p>
+    </div>
+        <ob-worker-item
+        *ngFor="let worker of workers; index as idx"
+        [index]="idx"
+        [id]="worker.worker_id"
+        [fio]="worker.FIO"
+        [bd]="worker.bd"
+        [phone]="worker.phone"
+        [email]="worker.email"
+        [post]="worker.post"
+        [salary]="worker.salary"></ob-worker-item>
+</div>

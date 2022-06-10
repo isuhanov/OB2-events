@@ -1,0 +1,28 @@
+<div class="worker-item table-tr" [class.even-white]="index%2!==0">
+    <p class="worker-item__id">{{ id }}</p>
+    <p class="worker-item__fio">{{ fio }}</p>
+    <p class="worker-item__bd">{{ bd.slice(0, 10) }}</p>
+    <p class="worker-item__email">{{ email }}</p>
+    <p class="worker-item__phone">{{ phone }}</p>
+    <p class="worker-item__post">{{ post }}</p>
+    <p class="worker-item__salary">{{ salary }}</p>
+    <p class="table-tr__btn">
+        <button class="btn">
+            <span class="material-symbols-outlined">
+                delete
+            </span>
+        </button>
+        <button class="btn">
+            <a class="links" routerLink="/workers" routerLinkActive="links-active">
+                <span class="material-symbols-outlined">
+                    person
+                </span>
+            </a>
+        </button>
+        <button class="btn">
+            <span class="material-symbols-outlined">
+                edit
+            </span>
+        </button>
+    </p>
+</div>

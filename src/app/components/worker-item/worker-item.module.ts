@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProjectItemComponent } from './project-item.component';
+import { WorkerItemComponent } from './worker-item.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 
 
 
 @NgModule({
   declarations: [
-    ProjectItemComponent
+    WorkerItemComponent
   ],
   imports: [
     CommonModule,
     AppRoutingModule
   ],
   exports: [
-    ProjectItemComponent
+    WorkerItemComponent
   ]
 })
-export class ProjectItemModule { }
+export class WorkerItemModule { }

@@ -3,6 +3,7 @@
     box-shadow: 2px 2px 15px 0px rgba(0, 0, 0, 0.1);
     background-color: rgb(253, 253, 253);
 
+
     .navbar {
         ul {
             height: 80px;
@@ -10,15 +11,27 @@
             flex-direction: row;
             align-items: center;
             justify-content: flex-start;
-            gap: 30px;
+            // gap: 30px;
+
+            li {
+                height: 100%;
+                a {
+                    display: flex;
+                    align-items: center;
+                    height: 100%;
+                    padding: 0 15px;
+                }
+            }
         }
     }
 
     .links {
         font-size: 17px;
         color: #9F3ED5;
+        transition: all .1s linear;
         &:hover {
-            color: #48036F;
+            color: #ffffff;
+            background-color: #dea5ff8b;
         }
         &:active {
             color: #AD66D5;
@@ -26,8 +39,9 @@
     }
 
     .links-active {
-        text-decoration: underline;
+        // text-decoration: underline;
         color: #ce7aff;
+        background-color: rgba(225, 191, 255, 0.288);
         font-size: 19px;
     }
     

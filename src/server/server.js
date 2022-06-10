@@ -19,7 +19,6 @@ app.all('*', function(req, res, next) {
   });
   
 app.get("/projects", function(req, res){
-    
     connection.query(
         'SELECT p.project_id, p.project_name, p.create_date, p.deadline, p.price, p.descr, c.customer_name FROM projects p inner join customers c on p.customer_id = c.customer_id;',
         function(err, results, fields) {
@@ -28,14 +27,30 @@ app.get("/projects", function(req, res){
     ); 
 });
 
-app.get("/users", function(req, res){
+app.get("/workers", function(req, res){
+    let query;
+    if (req.query.pr_id) {
+        query = `SELECT w.* FROM workers w inner join workers_projects wp on w.worker_id = wp.worker_id inner join projects p on p.project_id = wp.project_id where p.project_id = ${req.query.pr_id};`;
+    } else {
+        query = 'SELECT * FROM workers;'
+    }
+    
     connection.query(
-        'SELECT p.project_id, p.project_name, p.create_date, p.deadline, p.price, p.descr, c.customer_name FROM projects p inner join customers c on p.customer_id = c.customer_id;',
+        query,
         function(err, results, fields) {
             res.send(results);
         }
     ); 
 });
+
+// app.get("/users", function(req, res){
+//     connection.query(
+//         'SELECT p.project_id, p.project_name, p.create_date, p.deadline, p.price, p.descr, c.customer_name FROM projects p inner join customers c on p.customer_id = c.customer_id;',
+//         function(err, results, fields) {
+//             res.send(results);
+//         }
+//     ); 
+// });
 
 
 app.listen(3001, () => {

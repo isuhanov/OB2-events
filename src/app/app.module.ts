@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EventsModule } from './components/events/events.module';
 import { ProjectsModule } from './components/projects/projects.module';
+import { WorkersModule } from './components/workers/workers.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ProjectsModule } from './components/projects/projects.module';
     HttpClientModule,
     AppRoutingModule,
     ProjectsModule,
-    EventsModule
+    EventsModule,
+    WorkersModule
   ],
   providers: [],
   bootstrap: [AppComponent]

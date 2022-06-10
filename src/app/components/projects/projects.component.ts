@@ -16,7 +16,6 @@ export class ProjectsComponent implements OnInit {
   ngOnInit(): void {
     this.dbconnection.selectProjects().then((projects:readonly Project[]) => {
       this.projects = projects;
-      console.log(this.projects);
     });
   }
 

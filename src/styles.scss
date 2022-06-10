@@ -47,3 +47,81 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
 	margin: 0 auto;
 	width: 90%;
 }
+
+$wh-pink: rgb(253, 247, 255);
+$drk-pink: rgb(244, 214, 255);
+
+// $header-pink: #bd58f3;
+$header-pink: #9321f0;
+
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 20
+}
+
+.main-title {
+	margin: 30px 0 20px;
+	font-size: 30px;
+	font-weight: bold;
+	color: #6600db;
+}
+
+.table-container {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+
+    .main-title {
+        text-align: center;
+    }
+}
+
+.table-tr {
+    display: grid;
+    grid-template-columns: 1fr 4fr 3fr 3fr 2fr 5fr 4fr 1fr;
+    gap: 4px;
+    width: 90%;
+    min-height: 50px;
+    margin: 0 auto;
+
+    &[class*="even-white"] p {
+        background-color: $wh-pink;
+        color: black;
+    }
+    
+	& .header {
+        background-color: $header-pink;
+		color: white;
+        font-size: 17px;
+	}
+
+    & p {
+        text-align: left;
+        background-color: $drk-pink;
+        color: rgb(80, 0, 193);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .table-tr__btn {
+        display: flex;
+        flex-direction: column;
+        .btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            background-color: inherit; 
+            transition: all .1s linear;
+        
+            &:hover {
+                background-color: #af6affee;
+                color: white;
+            }
+        }
+    }
+}

@@ -8,6 +8,8 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ProjectItemComponent implements OnInit {
 
   @Input()
+  public index: number = 0;
+  @Input()
   public id: number = 0;
   @Input()
   public name: string = '';
