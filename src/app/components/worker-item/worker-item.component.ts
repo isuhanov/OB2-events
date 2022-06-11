@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { DbconnectionService } from 'src/app/lib/dbconnection.service';
 
 @Component({
   selector: 'ob-worker-item',
@@ -24,9 +25,22 @@ export class WorkerItemComponent implements OnInit {
   @Input()
   public salary: number = 0;
 
-  constructor() { }
+  @Output()
+  public onDelete = new EventEmitter();
+
+  constructor(private dbconnection: DbconnectionService) { }
 
   ngOnInit(): void {
+  }
+
+  public onClickeDelete(): void {
+    this.dbconnection.deleteWorker(this.id).then((err) => {
+      if (!err) {
+        this.onDelete.emit();
+      } else {
+        console.log('Что-то пошло не так');
+      }
+    });
   }
 
 }

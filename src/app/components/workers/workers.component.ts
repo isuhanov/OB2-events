@@ -20,6 +20,10 @@ export class WorkersComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getWorkers()
+  }
+
+  public getWorkers(): void {
     this.dbconnection.selectWorkers(this.prId).then((workers:readonly Worker[]) => {
       this.workers = workers;
     });

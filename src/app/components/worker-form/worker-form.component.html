@@ -1,0 +1,56 @@
+<div class="container">
+    <h2 class="main-title">Сотрудники</h2>
+    <form [formGroup]="form" class="form">
+        <div class="field">
+            <label for="fio">ФИО:</label>
+            <input type="text" formControlName="fio" id="fio">
+        </div>
+        <div class="error" *ngIf="isControlInvalid('fio')">
+            Ошибка
+        </div>
+
+        <div class="field">
+            <label for="bd">День рождения:</label>
+            <input type="text" formControlName="bd" id="bd">
+        </div>
+        <div class="error" *ngIf="isControlInvalid('bd')">
+            Ошибка
+        </div>
+
+        <div class="field">
+            <label for="phone">Телефон:</label>
+            <input type="text" formControlName="phone" id="phone">
+        </div>
+        <div class="error" *ngIf="isControlInvalid('phone')">
+            Ошибка
+        </div>
+        
+        <div class="field">
+            <label for="email">Почта:</label>
+            <input type="text" formControlName="email" id="email">
+        </div>
+        <div class="error" *ngIf="isControlInvalid('email')">
+            Ошибка
+        </div>
+        
+        <div class="field">
+            <label for="post">Должность:</label>
+            <input type="text" formControlName="post" id="post">
+        </div>
+        <div class="error" *ngIf="isControlInvalid('post')">
+            Ошибка
+        </div>
+        
+        <div class="field">
+            <label for="salary">З/П:</label>
+            <input type="text" formControlName="salary" id="salary">
+        </div>
+        <div class="error" *ngIf="isControlInvalid('salary')">
+            Ошибка
+        </div>
+        
+        <button class="btn" type="button" (click)="onSaveClick()">
+            Сохранить
+        </button>
+    </form>
+</div>

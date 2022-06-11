@@ -18,7 +18,7 @@ import { WorkersModule } from './components/workers/workers.module';
     AppRoutingModule,
     ProjectsModule,
     EventsModule,
-    WorkersModule
+    WorkersModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

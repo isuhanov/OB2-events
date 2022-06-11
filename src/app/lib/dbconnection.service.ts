@@ -19,9 +19,11 @@ export class DbconnectionService {
     let url = 'http://localhost:3001/workers';
     if (prId) { 
       url += `?pr_id=${prId}`;
-    };
-    
-    console.log(url);
+    };    
     return firstValueFrom(this.httpClient.get<readonly Worker[]>(url));
+  }
+
+  public deleteWorker(workerId: number): Promise<Object> {
+    return firstValueFrom(this.httpClient.delete(`http://localhost:3001/workers/delete?worker_id=${workerId}`));
   }
 }

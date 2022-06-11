@@ -9,7 +9,7 @@ import { EventsComponent } from './events.component';
     EventsComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
   ]
 })
 export class EventsModule { }

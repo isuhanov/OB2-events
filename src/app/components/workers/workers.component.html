@@ -8,7 +8,13 @@
         <p class="header">Телефон</p>
         <p class="header">Должность</p>
         <p class="header">З/П</p>
-        <p class="header"></p>
+        <p class="header table-tr__btn">
+            <a class="btn add-btn" routerLink="form">
+                <span class="material-symbols-outlined">
+                    add_box
+                </span>
+            </a>
+        </p>
     </div>
         <ob-worker-item
         *ngFor="let worker of workers; index as idx"
@@ -19,5 +25,6 @@
         [phone]="worker.phone"
         [email]="worker.email"
         [post]="worker.post"
-        [salary]="worker.salary"></ob-worker-item>
+        [salary]="worker.salary"
+        (onDelete)="getWorkers()"></ob-worker-item>
 </div>

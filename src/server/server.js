@@ -27,6 +27,7 @@ app.get("/projects", function(req, res){
     ); 
 });
 
+
 app.get("/workers", function(req, res){
     let query;
     if (req.query.pr_id) {
@@ -43,14 +44,16 @@ app.get("/workers", function(req, res){
     ); 
 });
 
-// app.get("/users", function(req, res){
-//     connection.query(
-//         'SELECT p.project_id, p.project_name, p.create_date, p.deadline, p.price, p.descr, c.customer_name FROM projects p inner join customers c on p.customer_id = c.customer_id;',
-//         function(err, results, fields) {
-//             res.send(results);
-//         }
-//     ); 
-// });
+app.delete("/workers/delete", function(req, res){
+    // console.log(req.query.worker_id);
+    connection.query(
+        `delete from workers where worker_id = ${req.query.worker_id};`,
+        function(err, results, fields) {
+            res.send(err);
+        }
+    ); 
+});
+
 
 
 app.listen(3001, () => {
