@@ -1,8 +1,15 @@
 import { Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Project, Worker } from '../domain';
 
+const httpHeaders: HttpHeaders = new HttpHeaders({
+  'Content-Type' : 'application/json',
+}); 
+
+let options = {
+  headers: httpHeaders
+}; 
 
 
 @Injectable({
@@ -25,5 +32,9 @@ export class DbconnectionService {
 
   public deleteWorker(workerId: number): Promise<Object> {
     return firstValueFrom(this.httpClient.delete(`http://localhost:3001/workers/delete?worker_id=${workerId}`));
+  }
+
+  public insertWorker(worker: Worker): Promise<Object> {
+    return firstValueFrom(this.httpClient.post(`http://localhost:3001/worker`, worker, options))    
   }
 }

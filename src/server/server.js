@@ -1,9 +1,12 @@
 const mysql = require("mysql2");
 const express = require("express");
+const bodyParser = require('body-parser')
  
 const app = express();
-const urlencodedParser = express.urlencoded({extended: false});
- 
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+   
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -45,7 +48,6 @@ app.get("/workers", function(req, res){
 });
 
 app.delete("/workers/delete", function(req, res){
-    // console.log(req.query.worker_id);
     connection.query(
         `delete from workers where worker_id = ${req.query.worker_id};`,
         function(err, results, fields) {
@@ -53,6 +55,16 @@ app.delete("/workers/delete", function(req, res){
         }
     ); 
 });
+
+app.post('/worker', function(req, res){
+    connection.query(
+        `INSERT INTO Workers(FIO, bd, phone, email, post, salary) VALUES ('${req.body.fio}', '${req.body.bd}', '${req.body.phone}', '${req.body.email}', '${req.body.post}', ${req.body.salary});`,
+        function(err, results, fields) {
+            res.send(err);
+        }
+    ); 
+});
+
 
 
 

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DbconnectionService } from 'src/app/lib/dbconnection.service';
 
+
 @Component({
   selector: 'ob-worker-item',
   templateUrl: './worker-item.component.html',

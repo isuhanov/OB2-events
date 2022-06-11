@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {Router} from '@angular/router';
+import { DbconnectionService } from 'src/app/lib/dbconnection.service';
 
 @Component({
   selector: 'ob-worker-form',
@@ -44,7 +46,8 @@ export class WorkerFormComponent implements OnInit {
                             ])
   })
 
-  constructor() { }
+  constructor(private dbconnection: DbconnectionService,
+    private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -62,9 +65,15 @@ export class WorkerFormComponent implements OnInit {
       Object.keys(controls).forEach(controlName => controls[controlName].markAsTouched());
       return;
     }
-      
-    
-    console.log(this.form.value);
+
+    this.dbconnection.insertWorker(this.form.value).then(err => {
+      if (!err) {
+        // this.onDelete.emit();
+        this.router.navigate(['/workers']);
+      } else {
+        console.log('Что-то пошло не так');
+      }
+    });
   }
 
 }
