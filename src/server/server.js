@@ -47,7 +47,16 @@ app.get("/workers", function(req, res){
     ); 
 });
 
-app.delete("/workers/delete", function(req, res){
+app.get("/worker", function(req, res){    
+    connection.query(
+        `SELECT * FROM workers WHERE worker_id = ${req.query.w_id}`,
+        function(err, results, fields) {
+            res.send(results);
+        }
+    ); 
+});
+
+app.delete("/worker", function(req, res){
     connection.query(
         `delete from workers where worker_id = ${req.query.worker_id};`,
         function(err, results, fields) {
@@ -59,6 +68,15 @@ app.delete("/workers/delete", function(req, res){
 app.post('/worker', function(req, res){
     connection.query(
         `INSERT INTO Workers(FIO, bd, phone, email, post, salary) VALUES ('${req.body.fio}', '${req.body.bd}', '${req.body.phone}', '${req.body.email}', '${req.body.post}', ${req.body.salary});`,
+        function(err, results, fields) {
+            res.send(err);
+        }
+    ); 
+});
+
+app.put('/worker', function(req, res){
+    connection.query(
+        `UPDATE Workers SET FIO = '${req.body.fio}', bd = '${req.body.bd}', phone = '${req.body.phone}', email = '${req.body.email}' , post = '${req.body.post}', salary = ${req.body.salary} WHERE worker_id = ${req.query.worker_id}`,
         function(err, results, fields) {
             res.send(err);
         }

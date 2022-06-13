@@ -30,11 +30,19 @@ export class DbconnectionService {
     return firstValueFrom(this.httpClient.get<readonly Worker[]>(url));
   }
 
+  public selectWorker(wId: number): Promise<readonly Worker[]> {
+    return firstValueFrom(this.httpClient.get<readonly Worker[]>(`http://localhost:3001/worker?w_id=${wId}`));
+  }
+
   public deleteWorker(workerId: number): Promise<Object> {
-    return firstValueFrom(this.httpClient.delete(`http://localhost:3001/workers/delete?worker_id=${workerId}`));
+    return firstValueFrom(this.httpClient.delete(`http://localhost:3001/worker?worker_id=${workerId}`));
   }
 
   public insertWorker(worker: Worker): Promise<Object> {
-    return firstValueFrom(this.httpClient.post(`http://localhost:3001/worker`, worker, options))    
+    return firstValueFrom(this.httpClient.post(`http://localhost:3001/worker`, worker, options)); 
+  }
+
+  public updatetWorker(workerId: number, worker: Worker): Promise<Object> {
+    return firstValueFrom(this.httpClient.put(`http://localhost:3001/worker?worker_id=${workerId}`, worker, options));  
   }
 }

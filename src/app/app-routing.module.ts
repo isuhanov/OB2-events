@@ -9,6 +9,7 @@ import { WorkersComponent } from './components/workers/workers.component';
 const routes: Routes = [
   {path: 'projects', component: ProjectsComponent},
   {path: 'events', component: EventsComponent},
+  {path: 'worker/form/:id', component: WorkerFormComponent},
   {path: 'workers/form', component: WorkerFormComponent},
   {path: 'workers/:id', component: WorkersComponent},
   {path: 'workers', component: WorkersComponent},
