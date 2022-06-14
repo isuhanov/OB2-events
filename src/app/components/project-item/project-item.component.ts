@@ -23,6 +23,8 @@ export class ProjectItemComponent implements OnInit {
   public descr: string = '';
   @Input()
   public customerName: string = '';
+  @Input()
+  public status: string = '';
   
   constructor() { }
 

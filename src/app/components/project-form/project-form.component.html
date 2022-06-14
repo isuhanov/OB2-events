@@ -1,0 +1,94 @@
+<div class="container">
+    <h2 class="main-title">Проекты</h2>
+    <form [formGroup]="form" class="form">
+        <div class="field">
+            <label for="name" class="label">Название:</label>
+            <input type="text" class="input" formControlName="name" id="name">
+        </div>
+        <div class="error" *ngIf="isControlInvalid('name')">
+            Ошибка
+        </div>
+
+        <div class="field">
+            <label class="label" for="crDate">Дата создания:</label>
+            <input class="input" type="text" formControlName="crDate" id="crDate">
+        </div>
+        <div class="error" *ngIf="isControlInvalid('crDate')">
+            Ошибка
+        </div>
+
+        <div class="field">
+            <label class="label" for="deadline">Дедлайн:</label>
+            <input class="input" type="text" formControlName="deadline" id="deadline">
+        </div>
+        <div class="error" *ngIf="isControlInvalid('deadline')">
+            Ошибка
+        </div>
+
+        <div class="field">
+            <label class="label" for="price">Стоимость:</label>
+            <input class="input" type="text" formControlName="price" id="price">
+        </div>
+        <div class="error" *ngIf="isControlInvalid('price')">
+            Ошибка
+        </div>
+
+        <div class="field">
+            <label class="label" for="descr">Описание:</label>
+            <textarea class="textarea" name="descr" id="descr" formControlName="descr"></textarea>
+        </div>
+        <div class="error" *ngIf="isControlInvalid('descr')">
+            Ошибка
+        </div>
+        
+        <div class="field">
+            <label for="" class="label">Статус:</label>
+            <div class="radio-container">
+                <label for="status">
+                    <input type="radio" value="Выполняется" formControlName="status" name="status" id="status">
+                    Выполняется
+                </label>
+                <label for="status">
+                    <input type="radio" value="Отменен" formControlName="status" name="status" id="status">
+                    Отменен
+                </label>
+                <label for="status">
+                    <input type="radio" value="Завершен" formControlName="status" name="status" id="status">
+                    Завершен
+                </label>
+            </div>
+        </div>
+        <div class="error" *ngIf="isControlInvalid('customerName')">
+            Ошибка
+        </div> 
+
+        <div class="field">
+            <label class="label" for="customerName">Заказчик:</label>
+            <select formControlName="customerName" [(ngModel)]="projectCustomer.customer_id" name="customerName" id="customerName">
+                <option disabled [ngValue]="-1">Выберите заказчика</option>
+                <option *ngFor="let customer of customers" [ngValue]="customer.customer_id">
+                    {{ customer.customer_id }}. {{ customer.customer_name }}
+                </option>
+            </select>
+        </div>
+        <div class="error" *ngIf="isControlInvalid('customerName')">
+            Ошибка
+        </div>
+
+        <div class="field">
+            <label class="label" for="workers">Сотрудники:</label>
+            <select multiple formControlName="workers" ngModel="1,2" name="workers" id="workers">
+                <option *ngFor="let worker of workers" [ngValue]="worker.worker_id">
+                    {{ worker.worker_id }}. {{ worker.FIO }}
+                </option>
+            </select>
+        </div>
+        <div class="error" *ngIf="isControlInvalid('customerName')">
+            Ошибка
+        </div>
+
+        <button class="btn" type="button" (click)="onSaveClick()">
+            Сохранить
+        </button>
+    </form>
+</div>

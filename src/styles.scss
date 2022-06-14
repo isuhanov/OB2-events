@@ -81,9 +81,16 @@ $header-pink: #9321f0;
     }
 }
 
+.project-tr {
+    grid-template-columns: 1fr 4fr 3fr 3fr 2fr 5fr 4fr 2fr 1fr;
+}
+
+.worker-tr {
+    grid-template-columns: 1fr 4fr 3fr 3fr 2fr 5fr 4fr 1fr;
+}
+
 .table-tr {
     display: grid;
-    grid-template-columns: 1fr 4fr 3fr 3fr 2fr 5fr 4fr 1fr;
     gap: 4px;
     width: 90%;
     min-height: 50px;
@@ -153,6 +160,7 @@ $header-pink: #9321f0;
     align-items: center;
     max-width: 30%;
     margin: 30px auto;
+    padding-bottom: 100px;
     gap: 20px;
 
     .field {
@@ -162,12 +170,12 @@ $header-pink: #9321f0;
         justify-content: space-between;
         align-items: center;
 
-        label {
+        .label {
             font-size: 17px;
             border-bottom: 1px solid black;
         }
 
-        input {
+        .input {
             outline: 1px solid black;
             border-radius: 3px;
             width: 250px;
@@ -180,10 +188,42 @@ $header-pink: #9321f0;
             }
         }
 
+        .radio-container {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 5px;
+        }
+
+        .textarea {
+            outline: 1px solid black;
+            border-radius: 3px;
+            width: 250px;
+            height: 70px;
+            resize: none;
+            padding: 4px 7px;
+            font-size: 15px;
+
+            &.ng-touched.ng-invalid{
+                outline-color: red;
+            }
+        }
+
+
+        select[multiple] {
+            height: 100px;
+            option {
+                margin: 2px 0;
+                font-size: 16px;
+            }
+        }
+
     }
 
     .error {
-        
+        color: red;
+        font-size: 13px;
     }
 
     .btn {

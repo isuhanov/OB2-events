@@ -5,5 +5,7 @@ export interface Project {
     deadline: string,
     price: number,
     descr: string,
-    customer_name: string
+    customer_name: string,
+    customer_id?: number,
+    status: string
 }

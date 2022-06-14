@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProjectsComponent } from './projects.component';
 import { ProjectItemModule } from '../project-item/project-item.module';
+import { AppRoutingModule } from 'src/app/app-routing.module';
 
 
 
@@ -11,7 +12,8 @@ import { ProjectItemModule } from '../project-item/project-item.module';
   ],
   imports: [
     CommonModule,
-    ProjectItemModule
+    ProjectItemModule,
+    AppRoutingModule
   ],
   exports: [
     ProjectsComponent

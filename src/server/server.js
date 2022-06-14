@@ -21,15 +21,85 @@ app.all('*', function(req, res, next) {
     next();
   });
   
+
+// ----------------- PROJECTS ------------------------------
+
 app.get("/projects", function(req, res){
     connection.query(
-        'SELECT p.project_id, p.project_name, p.create_date, p.deadline, p.price, p.descr, c.customer_name FROM projects p inner join customers c on p.customer_id = c.customer_id;',
+        'SELECT p.project_id, p.project_name, p.create_date, p.deadline, p.price, p.descr, p.status, c.customer_name FROM projects p inner join customers c on p.customer_id = c.customer_id;',
         function(err, results, fields) {
             res.send(results);
         }
     ); 
 });
 
+app.get("/project", function(req, res){    
+    connection.query(
+        `SELECT * FROM projects WHERE project_id = ${req.query.project_id}`,
+        function(err, results, fields) {
+            res.send(results);
+        }
+    ); 
+});
+
+app.post('/project', function(req, res){
+    // console.log(req.body);
+    connection.query(
+        `INSERT INTO projects (project_name, create_date, deadline, price, descr, status, customer_id)  values ('${req.body.name}', '${req.body.crDate}', '${req.body.deadline}', ${req.body.price}, '${req.body.descr}', '${req.body.status}', ${req.body.customerName});`,
+        function(err, results, fields) {
+            // console.log(err);
+            // console.log(results);
+            // console.log(fields);
+            res.send(results);
+        }
+    ); 
+});
+
+app.put('/project', function(req, res){
+    connection.query(
+        `UPDATE projects SET project_name = '${req.body.name}', create_date = '${req.body.crDate}', deadline = '${req.body.deadline}', price = '${req.body.price}' , descr = '${req.body.descr}', status = '${req.body.status}' WHERE project_id = ${req.query.project_id}`,
+        function(err, results, fields) {
+            res.send(err);
+        }
+    ); 
+});
+
+// ----------------- CUSTOMERS ------------------------------
+
+app.get("/customers", function(req, res){
+    connection.query(
+        'SELECT * FROM Customers',
+        function(err, results, fields) {
+            res.send(results);
+        }
+    ); 
+});
+
+app.get("/customer", function(req, res){
+    let query;
+    if (req.query.c_id) {
+        query = `SELECT * FROM customers WHERE customer_id = ${req.query.c_id};`
+    } else if (req.query.customer_name) {
+        query = `SELECT * FROM customers WHERE customer_name = ${req.query.customer_name};`
+    }
+    connection.query(
+        query,
+        function(err, results, fields) {
+            res.send(results);
+        }
+    ); 
+});
+
+// app.post('/customer', function(req, res){
+//     connection.query(
+//         // `INSERT INTO Workers(FIO, bd, phone, email, post, salary) VALUES ('${req.body.fio}', '${req.body.bd}', '${req.body.phone}', '${req.body.email}', '${req.body.post}', ${req.body.salary});`,
+//         function(err, results, fields) {
+//             res.send(err);
+//         }
+//     ); 
+// });
+
+// ------------------ WORKERS --------------------------------
 
 app.get("/workers", function(req, res){
     let query;
@@ -77,6 +147,18 @@ app.post('/worker', function(req, res){
 app.put('/worker', function(req, res){
     connection.query(
         `UPDATE Workers SET FIO = '${req.body.fio}', bd = '${req.body.bd}', phone = '${req.body.phone}', email = '${req.body.email}' , post = '${req.body.post}', salary = ${req.body.salary} WHERE worker_id = ${req.query.worker_id}`,
+        function(err, results, fields) {
+            res.send(err);
+        }
+    ); 
+});
+
+
+// ------------------ WORKERS-PROJECTS --------------------------------
+
+app.post('/worker-project', function(req, res){
+    connection.query(
+        `INSERT INTO Workers_projects(project_id, worker_id) VALUES (${req.body.project_id}, ${req.body.worker_id});`,
         function(err, results, fields) {
             res.send(err);
         }
