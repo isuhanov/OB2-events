@@ -18,6 +18,7 @@ const routes: Routes = [
   {path: 'worker/form/:id', component: WorkerFormComponent},
   {path: 'workers/form', component: WorkerFormComponent},
   {path: 'workers/:id', component: WorkersComponent},
+  {path: 'workers-events/:event-id', component: WorkersComponent},
   {path: 'workers', component: WorkersComponent},
   {path: '', redirectTo: 'projects', pathMatch: 'full'},
   // {path: '**'}, // ДОПИСАТЬ 404

@@ -1,1 +1,29 @@
-<p>events works!</p>
+<div class="table-container">
+    <h2 class="main-title">События</h2>
+    <div class="table-tr event-tr">
+        <p class="header">ID</p>
+        <p class="header">Тема</p>
+        <p class="header">Время начала</p>
+        <p class="header">Время окончания</p>
+        <p class="header">Место</p>
+        <p class="header">Название проекта</p>
+        <p class="header table-tr__btn">
+            <a class="btn add-btn" routerLink="form">
+                <span class="material-symbols-outlined">
+                    add_box
+                </span>
+            </a>
+        </p>
+    </div>
+    <ob-event-item
+        *ngFor="let event of events; index as idx"
+        [index]="idx"
+        [id]="event.event_id"
+        [theme]="event.theme"
+        [timeStart]="event.time_start"
+        [timeEnd]="event.time_end"
+        [place]="event.place"
+        [projectId]="event.project_id"
+        [projectName]="event.project_name"
+        (onDelete)="getEvents()"></ob-event-item>
+</div>

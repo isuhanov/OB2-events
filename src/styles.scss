@@ -89,6 +89,10 @@ $header-pink: #9321f0;
     grid-template-columns: 1fr 4fr 3fr 3fr 2fr 5fr 4fr 1fr;
 }
 
+.event-tr {
+    grid-template-columns: 1fr 4fr 3fr 3fr 3fr 4fr 1fr;
+}
+
 .table-tr {
     display: grid;
     gap: 4px;
@@ -126,10 +130,13 @@ $header-pink: #9321f0;
             width: 100%;
             background-color: inherit; 
             transition: all .1s linear;
+            
+            a {
+                color: inherit;
+            }
         
             &:hover {
                 background-color: #af6affee;
-                color: white;
             }
         }
 

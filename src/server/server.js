@@ -64,6 +64,28 @@ app.put('/project', function(req, res){
     ); 
 });
 
+
+// ----------------- EVENTS ------------------------------
+
+app.get("/events", function(req, res){
+    connection.query(
+        `SELECT ev.*, (SELECT p.project_name FROM projects p WHERE p.project_id = ev.project_id) as project_name FROM oevents ev`,
+        // 'SELECT p.project_id, p.project_name, p.create_date, p.deadline, p.price, p.descr, p.status, c.customer_name FROM projects p inner join customers c on p.customer_id = c.customer_id;',
+        function(err, results, fields) {
+            res.send(results);
+        }
+    ); 
+});
+
+app.delete("/event", function(req, res){
+    connection.query(
+        `delete from oevents where event_id = ${req.query.event_id};`,
+        function(err, results, fields) {
+            res.send(err);
+        }
+    ); 
+});
+
 // ----------------- CUSTOMERS ------------------------------
 
 app.get("/customers", function(req, res){
@@ -105,6 +127,8 @@ app.get("/workers", function(req, res){
     let query;
     if (req.query.pr_id) {
         query = `SELECT w.* FROM workers w inner join workers_projects wp on w.worker_id = wp.worker_id inner join projects p on p.project_id = wp.project_id where p.project_id = ${req.query.pr_id};`;
+    } else if (req.query.event_id) {
+        query = `SELECT w.* FROM workers w inner join workers_events we on w.worker_id = we.worker_id inner join oevents ev on ev.event_id = we.event_id where ev.event_id = ${req.query.event_id};`;
     } else {
         query = 'SELECT * FROM workers;'
     }
@@ -153,6 +177,18 @@ app.put('/worker', function(req, res){
     ); 
 });
 
+
+// ------------------ WORKERS-EVENTS --------------------------------
+
+
+app.delete("/event-worker", function(req, res){
+    connection.query(
+        `delete from Workers_events where event_id = ${req.query.event_id};`,
+        function(err, results, fields) {
+            res.send(err);
+        }
+    ); 
+});
 
 // ------------------ WORKERS-PROJECTS --------------------------------
 

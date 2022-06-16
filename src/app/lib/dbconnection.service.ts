@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Customer, Project, Worker, WorkerProject } from '../domain';
+import { Customer, Events, Project, Worker, WorkerProject } from '../domain';
 
 const httpHeaders: HttpHeaders = new HttpHeaders({
   'Content-Type' : 'application/json',
@@ -36,6 +36,18 @@ export class DbconnectionService {
     return firstValueFrom(this.httpClient.put(`http://localhost:3001/project?project_id=${projectId}`, project, options));  
   }
 
+
+// ----------------- EVENTS ------------------------------
+
+  public selectEvents(): Promise<readonly Events[]> {
+    return firstValueFrom(this.httpClient.get<readonly Events[]>(`http://localhost:3001/events`));
+  }
+
+  public deleteEvent(eventId: number): Promise<any> {
+    return firstValueFrom(this.httpClient.delete(`http://localhost:3001/event?event_id=${eventId}`));
+  }
+
+
 // ----------------- CUSTOMERS ------------------------------
 
   public selectCustomers(): Promise<readonly Customer[]> {
@@ -59,11 +71,13 @@ export class DbconnectionService {
 
 // ------------------ WORKERS --------------------------------
   
-  public selectWorkers(prId: number | undefined): Promise<readonly Worker[]> {
+  public selectWorkers(prId: number | undefined, eventId: number | undefined = undefined): Promise<readonly Worker[]> {
     let url = 'http://localhost:3001/workers';
     if (prId) { 
       url += `?pr_id=${prId}`;
-    };    
+    } else if (eventId) {
+      url += `?event_id=${eventId}`;
+    }    
     return firstValueFrom(this.httpClient.get<readonly Worker[]>(url));
   }
 
@@ -81,6 +95,13 @@ export class DbconnectionService {
 
   public updatetWorker(workerId: number, worker: Worker): Promise<any> {
     return firstValueFrom(this.httpClient.put(`http://localhost:3001/worker?worker_id=${workerId}`, worker, options));  
+  }
+
+
+// ------------------ WORKERS-EVENTS --------------------------------
+
+  public deleteWorkerEvent(eventId: number): Promise<any> {
+    return firstValueFrom(this.httpClient.delete(`http://localhost:3001/event-worker?event_id=${eventId}`));
   }
 
 

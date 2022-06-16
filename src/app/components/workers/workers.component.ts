@@ -12,11 +12,15 @@ import { Subscription } from 'rxjs';
 export class WorkersComponent implements OnInit {
   public workers: readonly Worker[] = [];
   public prId: number | undefined;
+  public eventId: number | undefined;
   private subscription: Subscription;
 
   constructor(private dbconnection: DbconnectionService,
               private activateRoute: ActivatedRoute) { 
-    this.subscription = activateRoute.params.subscribe(params=>this.prId=params['id']);
+    this.subscription = activateRoute.params.subscribe(params => {
+      this.prId = params['id']
+      this.eventId = params['event-id']
+    });
   }
 
   ngOnInit(): void {
@@ -24,9 +28,15 @@ export class WorkersComponent implements OnInit {
   }
 
   public getWorkers(): void {
-    this.dbconnection.selectWorkers(this.prId).then((workers:readonly Worker[]) => {
-      this.workers = workers;
-    });
+    if (this.eventId) {
+      this.dbconnection.selectWorkers(undefined, this.eventId).then((workers:readonly Worker[]) => {
+        this.workers = workers;
+      });
+    } else {
+      this.dbconnection.selectWorkers(this.prId).then((workers:readonly Worker[]) => {
+        this.workers = workers;
+      });
+    }
   }
 
 }

@@ -1,0 +1,29 @@
+<div class="event-item table-tr event-tr" [class.even-white]="index%2!==0">
+    <p class="event-item__id">{{ id }}</p>
+    <p class="event-item__theme">{{ theme }}</p>
+    <p class="event-item__time-start">{{ timeStart.slice(0, 10) }}</p>
+    <p class="event-item__time-start">{{ timeEnd.slice(0, 10) }}</p>
+    <p class="event-item__place">{{ place }}</p>
+    <p class="event-item__project-name">{{ projectName }}</p>
+    <p class="table-tr__btn">
+        <button class="btn" (click)="onClickeDelete()">
+            <span class="material-symbols-outlined">
+                delete
+            </span>
+        </button>
+        <button class="btn">
+            <a class="links" [routerLink]="['/workers-events', id]">
+                <span class="material-symbols-outlined">
+                    person
+                </span>
+            </a>
+        </button>
+        <button class="btn">
+            <a class="links" [routerLink]="['/worker/form', id]">
+                <span class="material-symbols-outlined">
+                    edit
+                </span>
+            </a>
+        </button>
+    </p>
+</div>
