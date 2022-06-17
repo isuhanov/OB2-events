@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { EventFormComponent } from './components/event-form/event-form.component';
 import { EventFormModule } from './components/event-form/event-form.module';
 import { EventsComponent } from './components/events/events.component';
+import { Page404Component } from './components/page404/page404.component';
 import { ProjectFormComponent } from './components/project-form/project-form.component';
 import { ProjectFormModule } from './components/project-form/project-form.module';
 import { ProjectsComponent } from './components/projects/projects.component';
@@ -25,7 +26,7 @@ const routes: Routes = [
   {path: 'workers-events/:event-id', component: WorkersComponent},
   {path: 'workers', component: WorkersComponent},
   {path: '', redirectTo: 'projects', pathMatch: 'full'},
-  // {path: '**'}, // ДОПИСАТЬ 404
+  {path: '**', component: Page404Component}, // ДОПИСАТЬ 404
 ];
 
 @NgModule({
