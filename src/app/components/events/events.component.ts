@@ -21,6 +21,7 @@ export class EventsComponent implements OnInit {
   public getEvents(): void {
     this.dbconnection.selectEvents().then((events: readonly Events[]) => {
       this.events = events;
+      console.log(events);
     })
   }
 

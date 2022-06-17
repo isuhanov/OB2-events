@@ -77,13 +77,13 @@
 
         <div class="field">
             <label class="label" for="workers">Сотрудники:</label>
-            <select multiple formControlName="workers" ngModel="1,2" name="workers" id="workers">
+            <select multiple formControlName="workers" ngModel="[]" name="workers" id="workers">
                 <option *ngFor="let worker of workers" [ngValue]="worker.worker_id">
                     {{ worker.worker_id }}. {{ worker.FIO }}
                 </option>
             </select>
         </div>
-        <div class="error" *ngIf="isControlInvalid('customerName')">
+        <div class="error" *ngIf="isControlInvalid('workers')">
             Ошибка
         </div>
 

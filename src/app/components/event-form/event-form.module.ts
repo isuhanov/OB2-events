@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EventFormComponent } from './event-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -9,7 +10,12 @@ import { EventFormComponent } from './event-form.component';
     EventFormComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule
+  ], 
+  exports: [
+    EventFormComponent
   ]
 })
 export class EventFormModule { }

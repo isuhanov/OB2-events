@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { EventFormComponent } from './components/event-form/event-form.component';
+import { EventFormModule } from './components/event-form/event-form.module';
 import { EventsComponent } from './components/events/events.component';
 import { ProjectFormComponent } from './components/project-form/project-form.component';
 import { ProjectFormModule } from './components/project-form/project-form.module';
@@ -13,6 +15,8 @@ const routes: Routes = [
   {path: 'projects/form', component: ProjectFormComponent},
   {path: 'projects', component: ProjectsComponent},
 
+  {path: 'events/form/:id', component: EventFormComponent},
+  {path: 'events/form', component: EventFormComponent},
   {path: 'events', component: EventsComponent},
 
   {path: 'worker/form/:id', component: WorkerFormComponent},
@@ -28,7 +32,8 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes),
     WorkerFormModule,
-    ProjectFormModule
+    ProjectFormModule,
+    EventFormModule
   ],
   exports: [RouterModule]
 })

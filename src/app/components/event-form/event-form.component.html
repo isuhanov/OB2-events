@@ -1,1 +1,65 @@
-<p>event-form works!</p>
+<div class="container">
+    <h2 class="main-title">События</h2>
+    <form [formGroup]="form" class="form">
+        <div class="field">
+            <label for="theme" class="label">Тема:</label>
+            <input type="text" class="input" formControlName="theme" id="theme">
+        </div>
+        <div class="error" *ngIf="isControlInvalid('theme')">
+            Ошибка
+        </div>
+
+        <div class="field">
+            <label class="label" for="timeStart">Время начала:</label>
+            <input class="input" type="text" formControlName="timeStart" id="timeStart">
+        </div>
+        <div class="error" *ngIf="isControlInvalid('timeStart')">
+            Ошибка
+        </div>
+
+        <div class="field">
+            <label class="label" for="timeEnd">Время окончания:</label>
+            <input class="input" type="text" formControlName="timeEnd" id="timeEnd">
+        </div>
+        <div class="error" *ngIf="isControlInvalid('timeEnd')">
+            Ошибка
+        </div>
+
+        <div class="field">
+            <label class="label" for="place">Место проведения:</label>
+            <input class="input" type="text" formControlName="place" id="place">
+        </div>
+        <div class="error" *ngIf="isControlInvalid('place')">
+            Ошибка
+        </div>
+
+        <div class="field">
+            <label class="label" for="projectId">Проект:</label>
+            <select formControlName="projectId" [(ngModel)]="eventProject.project_id" name="projectId" id="projectId">
+                <option disabled [ngValue]="-1">Выберите проект</option>
+                <option *ngFor="let project of projects" [ngValue]="project.project_id">
+                    {{ project.project_id }}. {{ project.project_name }}
+                </option>
+            </select>
+        </div>
+        <div class="error" *ngIf="isControlInvalid('projectId')">
+            Ошибка
+        </div>
+
+        <div class="field">
+            <label class="label" for="workers">Сотрудники:</label>
+            <select multiple formControlName="workers" ngModel="[]" name="workers" id="workers">
+                <option *ngFor="let worker of workers" [ngValue]="worker.worker_id">
+                    {{ worker.worker_id }}. {{ worker.FIO }}
+                </option>
+            </select>
+        </div>
+        <div class="error" *ngIf="isControlInvalid('workers')">
+            Ошибка
+        </div>
+
+        <button class="btn" type="button" (click)="onSaveClick()">
+            Сохранить
+        </button>
+    </form>
+</div>

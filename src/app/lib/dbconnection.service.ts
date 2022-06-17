@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Customer, Events, Project, Worker, WorkerProject } from '../domain';
+import { Customer, Events, Project, Worker, WorkerEvent, WorkerProject } from '../domain';
 
 const httpHeaders: HttpHeaders = new HttpHeaders({
   'Content-Type' : 'application/json',
@@ -43,10 +43,21 @@ export class DbconnectionService {
     return firstValueFrom(this.httpClient.get<readonly Events[]>(`http://localhost:3001/events`));
   }
 
+  public selectEvent(eventId: number): Promise<readonly Events[]> {
+    return firstValueFrom(this.httpClient.get<readonly Events[]>(`http://localhost:3001/event?event_id=${eventId}`));
+  }
+
   public deleteEvent(eventId: number): Promise<any> {
     return firstValueFrom(this.httpClient.delete(`http://localhost:3001/event?event_id=${eventId}`));
   }
 
+  public insertEvent(event: Events): Promise<any> {
+    return firstValueFrom(this.httpClient.post(`http://localhost:3001/event`, event, options)); 
+  }
+
+  public updatetEvent(eventId: number, event: Events): Promise<any> {
+    return firstValueFrom(this.httpClient.put(`http://localhost:3001/event?event_id=${eventId}`, event, options));  
+  }
 
 // ----------------- CUSTOMERS ------------------------------
 
@@ -102,6 +113,10 @@ export class DbconnectionService {
 
   public deleteWorkerEvent(eventId: number): Promise<any> {
     return firstValueFrom(this.httpClient.delete(`http://localhost:3001/event-worker?event_id=${eventId}`));
+  }
+
+  public insertWorkerEvent(workerEvent: WorkerEvent): Promise<any> {
+    return firstValueFrom(this.httpClient.post(`http://localhost:3001/event-worker`, workerEvent, options)); 
   }
 
 

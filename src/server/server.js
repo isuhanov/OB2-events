@@ -43,13 +43,9 @@ app.get("/project", function(req, res){
 });
 
 app.post('/project', function(req, res){
-    // console.log(req.body);
     connection.query(
         `INSERT INTO projects (project_name, create_date, deadline, price, descr, status, customer_id)  values ('${req.body.name}', '${req.body.crDate}', '${req.body.deadline}', ${req.body.price}, '${req.body.descr}', '${req.body.status}', ${req.body.customerName});`,
         function(err, results, fields) {
-            // console.log(err);
-            // console.log(results);
-            // console.log(fields);
             res.send(results);
         }
     ); 
@@ -77,6 +73,15 @@ app.get("/events", function(req, res){
     ); 
 });
 
+app.get("/event", function(req, res){    
+    connection.query(
+        `SELECT * FROM oevents WHERE event_id = ${req.query.event_id}`,
+        function(err, results, fields) {
+            res.send(results);
+        }
+    ); 
+});
+
 app.delete("/event", function(req, res){
     connection.query(
         `delete from oevents where event_id = ${req.query.event_id};`,
@@ -85,6 +90,26 @@ app.delete("/event", function(req, res){
         }
     ); 
 });
+
+app.post('/event', function(req, res){
+    connection.query(
+        `INSERT INTO OEvents(theme, time_start, time_end, place, project_id) VALUES ('${req.body.theme}', '${req.body.timeStart}', '${req.body.timeEnd}', '${req.body.place}', ${req.body.projectId})`,
+        // `INSERT INTO projects (project_name, create_date, deadline, price, descr, status, customer_id)  values ('${req.body.name}', '${req.body.crDate}', '${req.body.deadline}', ${req.body.price}, '${req.body.descr}', '${req.body.status}', ${req.body.customerName});`,
+        function(err, results, fields) {
+            res.send(results);
+        }
+    ); 
+});
+
+app.put('/event', function(req, res){
+    connection.query(
+        `UPDATE OEvents SET theme = '${req.body.theme}', time_start = '${req.body.timeStart}', time_end = '${req.body.timeEnd}', place = '${req.body.place}' , project_id = ${req.body.projectId} WHERE event_id = ${req.query.event_id}`,
+        function(err, results, fields) {
+            res.send(err);
+        }
+    ); 
+});
+
 
 // ----------------- CUSTOMERS ------------------------------
 
@@ -189,6 +214,17 @@ app.delete("/event-worker", function(req, res){
         }
     ); 
 });
+
+app.post('/event-worker', function(req, res){
+    connection.query(
+        `INSERT INTO Workers_events(event_id, worker_id, worker_status) VALUES (${req.body.event_id} , ${req.body.worker_id}, '')`,
+        // `INSERT INTO Workers_projects(project_id, worker_id) VALUES (${req.body.project_id}, ${req.body.worker_id});`,
+        function(err, results, fields) {
+            res.send(err);
+        }
+    ); 
+});
+
 
 // ------------------ WORKERS-PROJECTS --------------------------------
 

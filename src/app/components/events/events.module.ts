@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EventsComponent } from './events.component';
 import { EventItemModule } from '../event-item/event-item.module';
+import { AppRoutingModule } from 'src/app/app-routing.module';
 
 
 
@@ -11,7 +12,8 @@ import { EventItemModule } from '../event-item/event-item.module';
   ],
   imports: [
     CommonModule,
-    EventItemModule
+    EventItemModule,
+    AppRoutingModule
   ],
   exports: [
     EventsComponent

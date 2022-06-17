@@ -19,14 +19,10 @@ export class ProjectFormComponent implements OnInit {
       Validators.maxLength(150)
     ]),
     crDate: new FormControl('', [
-      Validators.required,
-      Validators.minLength(10),
-      Validators.maxLength(150)
+      Validators.required
     ]),
     deadline: new FormControl('', [
-      Validators.required,
-      Validators.minLength(10),
-      Validators.maxLength(150)
+      Validators.required
     ]),
     price: new FormControl('', [
       Validators.required,
@@ -74,8 +70,8 @@ export class ProjectFormComponent implements OnInit {
               this.projectId = params['id'];
               this.form.patchValue({
                 name: project[0].project_name,
-                crDate: project[0].create_date.slice(0, 10),
-                deadline: project[0].deadline.slice(0, 10),
+                crDate: project[0].create_date,
+                deadline: project[0].deadline,
                 price: project[0].price,
                 descr: project[0].descr,
                 status: project[0].status

@@ -62,7 +62,7 @@ export class WorkerFormComponent implements OnInit {
           this.wId = params['id'];
           this.form.setValue({
             fio: worker[0].FIO,
-            bd: worker[0].bd.slice(0, 10),
+            bd: worker[0].bd,
             phone: worker[0].phone,
             email: worker[0].email,
             post: worker[0].post,
