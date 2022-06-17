@@ -14,13 +14,20 @@
             </a>
         </p>
     </div>
-    <ob-customer-item
-        *ngFor="let customer of customers; index as idx"
-        [index]="idx"
-        [id]="customer.customer_id"
-        [customerName]="customer.customer_name"
-        [phone]="customer.phone"
-        [email]="customer.email"
-        [adress]="customer.adress"
-        (onDelete)="getCustomers()"></ob-customer-item>
+    <div *ngIf="isExists">  
+        <ob-customer-item
+            *ngFor="let customer of customers; index as idx"
+            [index]="idx"
+            [id]="customer.customer_id"
+            [customerName]="customer.customer_name"
+            [phone]="customer.phone"
+            [email]="customer.email"
+            [adress]="customer.adress"
+            (onDelete)="getCustomers()"></ob-customer-item>
+    </div>
+    <div *ngIf="!isExists">
+        <h2 class="main-title">
+            Пусто :(
+        </h2>
+    </div>
 </div>

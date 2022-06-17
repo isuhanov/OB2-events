@@ -106,7 +106,6 @@ export class EventFormComponent implements OnInit {
 
 
     if (this.isUpdated) {
-      // console.log(this.form.value);
       this.dbconnection.updatetEvent(this.eventId, this.form.value).then((err) => {
         if (!err) {
           this.router.navigate(['/events']);
@@ -115,12 +114,10 @@ export class EventFormComponent implements OnInit {
         }
       })
     } else {
-      console.log(this.form.value);
       this.dbconnection.insertEvent(this.form.value).then((res: any) => {
         if(res) {
           this.form.value.workers.forEach((worker: number)=>{            
             this.dbconnection.insertWorkerEvent({event_id: res.insertId,  worker_id: worker}).then(err => {
-              console.log(err);
               if (!err) {
                 this.router.navigate(['/events']);
               } else {

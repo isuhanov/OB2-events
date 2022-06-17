@@ -11,6 +11,8 @@ import { DbconnectionService } from 'src/app/lib/dbconnection.service';
 export class EventsComponent implements OnInit {
 
   public events: readonly Events[] = [];
+  public isExists: boolean = true;
+
 
   constructor(private dbconnection: DbconnectionService) { }
 
@@ -20,8 +22,12 @@ export class EventsComponent implements OnInit {
 
   public getEvents(): void {
     this.dbconnection.selectEvents().then((events: readonly Events[]) => {
-      this.events = events;
-      console.log(events);
+      if (events.length == 0) {
+        this.isExists = false;
+      } else {
+        this.events = events;
+        this.isExists = true;
+      }
     })
   }
 

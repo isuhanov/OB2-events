@@ -110,7 +110,6 @@ export class ProjectFormComponent implements OnInit {
     }
 
     if (this.isUpdated) {
-      console.log(this.form.value);
       this.dbconnection.updatetProject(this.projectId, this.form.value).then(err => {
         if (!err) {
           this.router.navigate(['/projects']);
@@ -121,7 +120,6 @@ export class ProjectFormComponent implements OnInit {
     } else {
       this.dbconnection.insertProject(this.form.value).then((res: any) => {
         if(res) {
-          // console.log(res.insertId);
           this.form.value.workers.forEach((worker: number)=>{            
             this.dbconnection.insertWorkerProject({project_id: res.insertId,  worker_id: worker}).then(err => {
               if (!err) {

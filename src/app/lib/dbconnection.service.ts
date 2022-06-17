@@ -20,8 +20,12 @@ export class DbconnectionService {
 
 // ----------------- PROJECTS ------------------------------
 
-  public selectProjects(): Promise<readonly Project[]> {
-    return firstValueFrom(this.httpClient.get<readonly Project[]>(`http://localhost:3001/projects`));
+  public selectProjects(status: string | undefined = undefined): Promise<readonly Project[]> {
+    let url = 'http://localhost:3001/projects';
+    if (status) {
+      url += `?status=${status}`;
+    }
+    return firstValueFrom(this.httpClient.get<readonly Project[]>(url));
   }
 
   public selectProject(pId: number): Promise<readonly Project[]> {

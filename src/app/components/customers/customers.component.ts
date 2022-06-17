@@ -14,6 +14,8 @@ export class CustomersComponent implements OnInit {
   public prId: number | undefined;
   public eventId: number | undefined;
   // private subscription: Subscription;
+  public isExists: boolean = true;
+
 
   constructor(private dbconnection: DbconnectionService,
               private activateRoute: ActivatedRoute) { 
@@ -29,8 +31,12 @@ export class CustomersComponent implements OnInit {
 
   public getCustomers(): void {
     this.dbconnection.selectCustomers().then((customers: readonly Customer[]) => {
-      this.customers = customers;
-      console.log(customers);
+      if (customers.length == 0) {
+        this.isExists = false;
+      } else {
+        this.customers = customers;
+        this.isExists = true;
+      }
     });
   }
 

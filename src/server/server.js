@@ -25,8 +25,12 @@ app.all('*', function(req, res, next) {
 // ----------------- PROJECTS ------------------------------
 
 app.get("/projects", function(req, res){
+    let query = 'SELECT p.project_id, p.project_name, p.create_date, p.deadline, p.price, p.descr, p.status, c.customer_name FROM projects p inner join customers c on p.customer_id = c.customer_id';
+    if (req.query.status) {
+        query += ` WHERE status='${req.query.status}'` 
+    }
     connection.query(
-        'SELECT p.project_id, p.project_name, p.create_date, p.deadline, p.price, p.descr, p.status, c.customer_name FROM projects p inner join customers c on p.customer_id = c.customer_id;',
+        query,
         function(err, results, fields) {
             res.send(results);
         }

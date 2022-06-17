@@ -47,13 +47,6 @@ export class EventItemComponent implements OnInit {
         console.log('Что-то пошло не так');
       }
     });
-    // this.dbconnection.deleteWorker(this.id).then((err) => {
-    //   if (!err) {
-    //     this.onDelete.emit();
-    //   } else {
-    //     console.log('Что-то пошло не так');
-    //   }
-    // });
   }
 
 }

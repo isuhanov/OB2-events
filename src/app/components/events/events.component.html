@@ -15,15 +15,22 @@
             </a>
         </p>
     </div>
-    <ob-event-item
-        *ngFor="let event of events; index as idx"
-        [index]="idx"
-        [id]="event.event_id"
-        [theme]="event.theme"
-        [timeStart]="event.time_start"
-        [timeEnd]="event.time_end"
-        [place]="event.place"
-        [projectId]="event.project_id"
-        [projectName]="event.project_name"
-        (onDelete)="getEvents()"></ob-event-item>
+    <div *ngIf="isExists">  
+        <ob-event-item
+            *ngFor="let event of events; index as idx"
+            [index]="idx"
+            [id]="event.event_id"
+            [theme]="event.theme"
+            [timeStart]="event.time_start"
+            [timeEnd]="event.time_end"
+            [place]="event.place"
+            [projectId]="event.project_id"
+            [projectName]="event.project_name"
+            (onDelete)="getEvents()"></ob-event-item>
+    </div>
+    <div *ngIf="!isExists">
+        <h2 class="main-title">
+            Пусто :(
+        </h2>
+    </div>
 </div>

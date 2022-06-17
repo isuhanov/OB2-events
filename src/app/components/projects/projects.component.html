@@ -1,5 +1,32 @@
 <div class="table-container">
-    <h2 class="main-title">Проекты</h2>
+    <div class="top">
+        <h2 class="main-title">Проекты</h2>
+        <div class="filter-container">
+            <div class="field">
+                <label for="" class="label">Тип проекта:</label>
+                <div class="radio-container">
+                    <label for="status">
+                        <input type="radio" value="Выполняется" [formControl]="typeProject" name="typeProject" id="typeProject">
+                        Выполняется
+                    </label>
+                    <label for="status">
+                        <input type="radio" value="Отменен" [formControl]="typeProject" name="typeProject" id="typeProject">
+                        Отменен
+                    </label>
+                    <label for="status">
+                        <input type="radio" value="Завершен" [formControl]="typeProject" name="typeProject" id="typeProject">
+                        Завершен
+                    </label>
+                    <label for="status">
+                        <input type="radio" value="Все" [formControl]="typeProject" name="typeProject" id="typeProject">
+                        Все
+                    </label>
+                </div>
+            </div>
+            <button class="btn" (click)="onFilterClick()">Показать</button>
+        </div>
+    </div>
+    
     <div class="table-tr project-tr">
         <p class="header">ID</p>
         <p class="header">Название проекта</p>
@@ -17,16 +44,23 @@
             </a>
         </p>
     </div>
-    <ob-project-item 
-        *ngFor="let prjct of projects; index as idx"
-        [index]="idx"
-        [id]="prjct.project_id"
-        [name]="prjct.project_name"
-        [crDate]="prjct.create_date"
-        [deadline]="prjct.deadline"
-        [price]="prjct.price"
-        [descr]="prjct.descr"
-        [customerName]="prjct.customer_name"
-        [status]="prjct.status"
-        ></ob-project-item>
+    <div *ngIf="isExists">  
+        <ob-project-item 
+            *ngFor="let prjct of projects; index as idx"
+            [index]="idx"
+            [id]="prjct.project_id"
+            [name]="prjct.project_name"
+            [crDate]="prjct.create_date"
+            [deadline]="prjct.deadline"
+            [price]="prjct.price"
+            [descr]="prjct.descr"
+            [customerName]="prjct.customer_name"
+            [status]="prjct.status"
+            ></ob-project-item>
+    </div>
+    <div *ngIf="!isExists">
+        <h2 class="main-title">
+            Пусто :(
+        </h2>
+    </div>
 </div>

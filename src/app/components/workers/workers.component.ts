@@ -14,6 +14,8 @@ export class WorkersComponent implements OnInit {
   public prId: number | undefined;
   public eventId: number | undefined;
   private subscription: Subscription;
+  public isExists: boolean = true;
+
 
   constructor(private dbconnection: DbconnectionService,
               private activateRoute: ActivatedRoute) { 
@@ -30,11 +32,21 @@ export class WorkersComponent implements OnInit {
   public getWorkers(): void {
     if (this.eventId) {
       this.dbconnection.selectWorkers(undefined, this.eventId).then((workers:readonly Worker[]) => {
-        this.workers = workers;
+        if (workers.length == 0) {
+          this.isExists = false;
+        } else {
+          this.isExists = true;
+          this.workers = workers;
+        }
       });
     } else {
       this.dbconnection.selectWorkers(this.prId).then((workers:readonly Worker[]) => {
-        this.workers = workers;
+        if (workers.length == 0) {
+          this.isExists = false;
+        } else {
+          this.isExists = true;
+          this.workers = workers;
+        }
       });
     }
   }
