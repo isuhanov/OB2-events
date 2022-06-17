@@ -1,5 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CustomerFormComponent } from './components/customer-form/customer-form.component';
+import { CustomerFormModule } from './components/customer-form/customer-form.module';
+import { CustomersComponent } from './components/customers/customers.component';
+import { CustomersModule } from './components/customers/customers.module';
 import { EventFormComponent } from './components/event-form/event-form.component';
 import { EventFormModule } from './components/event-form/event-form.module';
 import { EventsComponent } from './components/events/events.component';
@@ -20,13 +24,18 @@ const routes: Routes = [
   {path: 'events/form', component: EventFormComponent},
   {path: 'events', component: EventsComponent},
 
+  {path: 'customer/form/:id', component: CustomerFormComponent},
+  {path: 'customers/form', component: CustomerFormComponent},
+  {path: 'customers', component: CustomersComponent},
+
   {path: 'worker/form/:id', component: WorkerFormComponent},
   {path: 'workers/form', component: WorkerFormComponent},
   {path: 'workers/:id', component: WorkersComponent},
   {path: 'workers-events/:event-id', component: WorkersComponent},
   {path: 'workers', component: WorkersComponent},
+
   {path: '', redirectTo: 'projects', pathMatch: 'full'},
-  {path: '**', component: Page404Component}, // ДОПИСАТЬ 404
+  {path: '**', component: Page404Component},
 ];
 
 @NgModule({
@@ -34,7 +43,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     WorkerFormModule,
     ProjectFormModule,
-    EventFormModule
+    EventFormModule,
+    CustomerFormModule
   ],
   exports: [RouterModule]
 })

@@ -1,0 +1,21 @@
+<div class="customer-item table-tr customers-tr" [class.even-white]="index%2!==0">
+    <p class="customer-item__id">{{ id }}</p>
+    <p class="customer-item__name">{{ customerName }}</p>
+    <p class="customer-item__phone">{{ phone }}</p>
+    <p class="customer-item__email">{{ email }}</p>
+    <p class="customer-item__address">{{ adress }}</p>
+    <p class="table-tr__btn">
+        <button class="btn" (click)="onClickeDelete()">
+            <span class="material-symbols-outlined">
+                delete
+            </span>
+        </button>
+        <button class="btn">
+            <a class="links" [routerLink]="['/customer/form', id]">
+                <span class="material-symbols-outlined">
+                    edit
+                </span>
+            </a>
+        </button>
+    </p>
+</div>

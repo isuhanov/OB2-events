@@ -75,8 +75,16 @@ export class DbconnectionService {
     return firstValueFrom(this.httpClient.get<readonly Customer[]>(url));
   }
 
+  public deleteCustomer(customerId: number): Promise<any> {
+    return firstValueFrom(this.httpClient.delete(`http://localhost:3001/customer?customer_id=${customerId}`));
+  }
+
   public insertCustomer(customer: Customer): Promise<any> {
-    return firstValueFrom(this.httpClient.post(`http://localhost:3001/worker`, customer, options)); 
+    return firstValueFrom(this.httpClient.post(`http://localhost:3001/customer`, customer, options)); 
+  }
+
+  public updatetCustomer(customerId: number, customer: Customer): Promise<any> {
+    return firstValueFrom(this.httpClient.put(`http://localhost:3001/customer?customer_id=${customerId}`, customer, options));  
   }
 
 

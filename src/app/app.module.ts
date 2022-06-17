@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { EventsModule } from './components/events/events.module';
 import { ProjectsModule } from './components/projects/projects.module';
 import { WorkersModule } from './components/workers/workers.module';
+import { CustomersModule } from './components/customers/customers.module';
 
 @NgModule({
   declarations: [

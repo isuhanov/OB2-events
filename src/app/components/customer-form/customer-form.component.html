@@ -1,0 +1,40 @@
+<div class="container">
+    <h2 class="main-title">Заказчики</h2>
+    <form [formGroup]="form" class="form">
+        <div class="field">
+            <label for="customerName" class="label">Название / Имя:</label>
+            <input class="input" type="text" formControlName="customerName" id="customerName">
+        </div>
+        <div class="error" *ngIf="isControlInvalid('customerName')">
+            Ошибка
+        </div>
+
+        <div class="field">
+            <label for="phone" class="label">Телефон:</label>
+            <input class="input" type="text" formControlName="phone" id="phone">
+        </div>
+        <div class="error" *ngIf="isControlInvalid('phone')">
+            Ошибка
+        </div>
+        
+        <div class="field">
+            <label for="email" class="label">Почта:</label>
+            <input class="input" type="text" formControlName="email" id="email">
+        </div>
+        <div class="error" *ngIf="isControlInvalid('email')">
+            Ошибка
+        </div>
+        
+        <div class="field">
+            <label for="adress" class="label">Адрес:</label>
+            <input class="input" type="text" formControlName="adress" id="adress">
+        </div>
+        <div class="error" *ngIf="isControlInvalid('adress')">
+            Ошибка
+        </div>
+        
+        <button class="btn" type="button" (click)="onSaveClick()">
+            Сохранить
+        </button>
+    </form>
+</div>

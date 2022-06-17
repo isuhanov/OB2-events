@@ -93,6 +93,10 @@ $header-pink: #9321f0;
     grid-template-columns: 1fr 4fr 3fr 3fr 3fr 4fr 1fr;
 }
 
+.customers-tr {
+    grid-template-columns: 1fr 4fr 3fr 3fr 4fr 1fr;
+}
+
 .table-tr {
     display: grid;
     gap: 4px;

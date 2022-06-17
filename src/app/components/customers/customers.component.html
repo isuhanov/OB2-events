@@ -1,0 +1,26 @@
+<div class="table-container">
+    <h2 class="main-title">Сотрудники</h2>
+    <div class="table-tr customers-tr">
+        <p class="header">ID</p>
+        <p class="header">Название / Имя</p>
+        <p class="header">Телефон</p>
+        <p class="header">Почта</p>
+        <p class="header">Адрес</p>
+        <p class="header table-tr__btn">
+            <a class="btn add-btn" routerLink="form">
+                <span class="material-symbols-outlined">
+                    add_box
+                </span>
+            </a>
+        </p>
+    </div>
+    <ob-customer-item
+        *ngFor="let customer of customers; index as idx"
+        [index]="idx"
+        [id]="customer.customer_id"
+        [customerName]="customer.customer_name"
+        [phone]="customer.phone"
+        [email]="customer.email"
+        [adress]="customer.adress"
+        (onDelete)="getCustomers()"></ob-customer-item>
+</div>

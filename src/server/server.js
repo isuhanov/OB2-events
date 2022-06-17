@@ -66,7 +66,6 @@ app.put('/project', function(req, res){
 app.get("/events", function(req, res){
     connection.query(
         `SELECT ev.*, (SELECT p.project_name FROM projects p WHERE p.project_id = ev.project_id) as project_name FROM oevents ev`,
-        // 'SELECT p.project_id, p.project_name, p.create_date, p.deadline, p.price, p.descr, p.status, c.customer_name FROM projects p inner join customers c on p.customer_id = c.customer_id;',
         function(err, results, fields) {
             res.send(results);
         }
@@ -94,7 +93,6 @@ app.delete("/event", function(req, res){
 app.post('/event', function(req, res){
     connection.query(
         `INSERT INTO OEvents(theme, time_start, time_end, place, project_id) VALUES ('${req.body.theme}', '${req.body.timeStart}', '${req.body.timeEnd}', '${req.body.place}', ${req.body.projectId})`,
-        // `INSERT INTO projects (project_name, create_date, deadline, price, descr, status, customer_id)  values ('${req.body.name}', '${req.body.crDate}', '${req.body.deadline}', ${req.body.price}, '${req.body.descr}', '${req.body.status}', ${req.body.customerName});`,
         function(err, results, fields) {
             res.send(results);
         }
@@ -137,14 +135,33 @@ app.get("/customer", function(req, res){
     ); 
 });
 
-// app.post('/customer', function(req, res){
-//     connection.query(
-//         // `INSERT INTO Workers(FIO, bd, phone, email, post, salary) VALUES ('${req.body.fio}', '${req.body.bd}', '${req.body.phone}', '${req.body.email}', '${req.body.post}', ${req.body.salary});`,
-//         function(err, results, fields) {
-//             res.send(err);
-//         }
-//     ); 
-// });
+app.delete("/customer", function(req, res){
+    connection.query(
+        `delete from customers where customer_id = ${req.query.customer_id};`,
+        function(err, results, fields) {
+            res.send(err);
+        }
+    ); 
+});
+
+app.post('/customer', function(req, res){
+    connection.query(
+        `INSERT INTO Customers(customer_name, phone, email, adress) VALUES ('${req.body.customerName}', '${req.body.phone}', '${req.body.email}', '${req.body.adress}');`,
+        function(err, results, fields) {
+            res.send(err);
+        }
+    ); 
+});
+
+app.put('/customer', function(req, res){
+    connection.query(
+        `UPDATE Customers SET customer_name = '${req.body.customerName}', phone = '${req.body.phone}', email = '${req.body.email}' , adress = '${req.body.adress}' WHERE customer_id = ${req.query.customer_id};`,
+        function(err, results, fields) {
+            res.send(err);
+        }
+    ); 
+});
+
 
 // ------------------ WORKERS --------------------------------
 
@@ -218,7 +235,6 @@ app.delete("/event-worker", function(req, res){
 app.post('/event-worker', function(req, res){
     connection.query(
         `INSERT INTO Workers_events(event_id, worker_id, worker_status) VALUES (${req.body.event_id} , ${req.body.worker_id}, '')`,
-        // `INSERT INTO Workers_projects(project_id, worker_id) VALUES (${req.body.project_id}, ${req.body.worker_id});`,
         function(err, results, fields) {
             res.send(err);
         }
