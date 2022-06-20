@@ -7,11 +7,6 @@
     <p class="worker-item__post">{{ post }}</p>
     <p class="worker-item__salary">{{ salary }}</p>
     <p class="table-tr__btn">
-        <button class="btn" (click)="onClickeDelete()">
-            <span class="material-symbols-outlined">
-                delete
-            </span>
-        </button>
         <button class="btn">
             <a class="links" [routerLink]="['/worker/form', id]">
                 <span class="material-symbols-outlined">

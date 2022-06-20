@@ -19,10 +19,12 @@ export class EventFormComponent implements OnInit {
       Validators.maxLength(50)
     ]),
     timeStart: new FormControl('', [
-      Validators.required
+      Validators.required,
+      Validators.pattern(/\d\d\d\d-\d\d-\d\d \/ \d\d:\d\d/)
     ]),
     timeEnd: new FormControl('', [
-      Validators.required
+      Validators.required,
+      Validators.pattern(/\d\d\d\d-\d\d-\d\d \/ \d\d:\d\d/)
     ]),
     place: new FormControl('', [
       Validators.required,
@@ -40,7 +42,7 @@ export class EventFormComponent implements OnInit {
   public workers: readonly Worker[] = [];
   public projects: readonly Project[] = [];
   public eventProject: Project = {
-    project_id: -1,
+    project_id: null,
     project_name: '',
     create_date: '',
     deadline: '',
@@ -49,6 +51,8 @@ export class EventFormComponent implements OnInit {
     status: '',
     customer_name: ''
   };
+
+  public selectWorkers: number[] | null = null;
 
 
   public isUpdated: boolean = false;
@@ -72,6 +76,7 @@ export class EventFormComponent implements OnInit {
                 place: events[0].place
               })
               this.workers = selectWorkers;
+              this.selectWorkers = selectWorkers.map(worker => worker.worker_id);
               this.eventProject = project[0]
             })
           })

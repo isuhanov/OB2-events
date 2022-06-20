@@ -22,7 +22,8 @@ export class CustomerFormComponent implements OnInit {
                           [
                             Validators.required,
                             Validators.minLength(11),
-                            Validators.maxLength(11)
+                            Validators.maxLength(11),
+                            Validators.pattern(/8\d{10}/)
                           ]),
     email: new FormControl('',
                           [

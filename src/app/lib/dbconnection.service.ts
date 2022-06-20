@@ -79,7 +79,7 @@ export class DbconnectionService {
     return firstValueFrom(this.httpClient.get<readonly Customer[]>(url));
   }
 
-  public deleteCustomer(customerId: number): Promise<any> {
+  public deleteCustomer(customerId: number | null): Promise<any> {
     return firstValueFrom(this.httpClient.delete(`http://localhost:3001/customer?customer_id=${customerId}`));
   }
 
@@ -108,10 +108,6 @@ export class DbconnectionService {
     return firstValueFrom(this.httpClient.get<readonly Worker[]>(`http://localhost:3001/worker?w_id=${wId}`));
   }
 
-  public deleteWorker(workerId: number): Promise<any> {
-    return firstValueFrom(this.httpClient.delete(`http://localhost:3001/worker?worker_id=${workerId}`));
-  }
-
   public insertWorker(worker: Worker): Promise<any> {
     return firstValueFrom(this.httpClient.post(`http://localhost:3001/worker`, worker, options)); 
   }
@@ -134,8 +130,8 @@ export class DbconnectionService {
 
 // ------------------ WORKERS-PROJECTS --------------------------------
 
-public insertWorkerProject(workerProject: WorkerProject): Promise<any> {
-  return firstValueFrom(this.httpClient.post(`http://localhost:3001/worker-project`, workerProject, options)); 
-}
+  public insertWorkerProject(workerProject: WorkerProject): Promise<any> {
+    return firstValueFrom(this.httpClient.post(`http://localhost:3001/worker-project`, workerProject, options)); 
+  }
 
 }

@@ -196,15 +196,6 @@ app.get("/worker", function(req, res){
     ); 
 });
 
-app.delete("/worker", function(req, res){
-    connection.query(
-        `delete from workers where worker_id = ${req.query.worker_id};`,
-        function(err, results, fields) {
-            res.send(err);
-        }
-    ); 
-});
-
 app.post('/worker', function(req, res){
     connection.query(
         `INSERT INTO Workers(FIO, bd, phone, email, post, salary) VALUES ('${req.body.fio}', '${req.body.bd}', '${req.body.phone}', '${req.body.email}', '${req.body.post}', ${req.body.salary});`,

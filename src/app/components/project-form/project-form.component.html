@@ -6,7 +6,7 @@
             <input type="text" class="input" formControlName="name" id="name">
         </div>
         <div class="error" *ngIf="isControlInvalid('name')">
-            Ошибка
+            Введены некоретные данные 
         </div>
 
         <div class="field">
@@ -14,7 +14,7 @@
             <input class="input" type="text" formControlName="crDate" id="crDate">
         </div>
         <div class="error" *ngIf="isControlInvalid('crDate')">
-            Ошибка
+            Введены некоретные данные 
         </div>
 
         <div class="field">
@@ -22,7 +22,7 @@
             <input class="input" type="text" formControlName="deadline" id="deadline">
         </div>
         <div class="error" *ngIf="isControlInvalid('deadline')">
-            Ошибка
+            Введены некоретные данные 
         </div>
 
         <div class="field">
@@ -30,7 +30,7 @@
             <input class="input" type="text" formControlName="price" id="price">
         </div>
         <div class="error" *ngIf="isControlInvalid('price')">
-            Ошибка
+            Введены некоретные данные 
         </div>
 
         <div class="field">
@@ -38,7 +38,7 @@
             <textarea class="textarea" name="descr" id="descr" formControlName="descr"></textarea>
         </div>
         <div class="error" *ngIf="isControlInvalid('descr')">
-            Ошибка
+            Введены некоретные данные 
         </div>
         
         <div class="field">
@@ -58,33 +58,33 @@
                 </label>
             </div>
         </div>
-        <div class="error" *ngIf="isControlInvalid('customerName')">
-            Ошибка
+        <div class="error" *ngIf="isControlInvalid('status')">
+            Введены некоретные данные 
         </div> 
 
         <div class="field">
             <label class="label" for="customerName">Заказчик:</label>
             <select formControlName="customerName" [(ngModel)]="projectCustomer.customer_id" name="customerName" id="customerName">
-                <option disabled [ngValue]="-1">Выберите заказчика</option>
+                <option disabled [ngValue]="null">Выберите заказчика</option>
                 <option *ngFor="let customer of customers" [ngValue]="customer.customer_id">
                     {{ customer.customer_id }}. {{ customer.customer_name }}
                 </option>
             </select>
         </div>
         <div class="error" *ngIf="isControlInvalid('customerName')">
-            Ошибка
+            Введены некоретные данные 
         </div>
 
         <div class="field">
             <label class="label" for="workers">Сотрудники:</label>
-            <select multiple formControlName="workers" ngModel="[]" name="workers" id="workers">
-                <option *ngFor="let worker of workers" [ngValue]="worker.worker_id">
+            <select multiple formControlName="workers"  [ngModel]="selectWorkers" name="workers" id="workers">
+                <option *ngFor="let worker of workers" [ngValue]="worker.worker_id" [disabled]="selectWorkers">
                     {{ worker.worker_id }}. {{ worker.FIO }}
                 </option>
             </select>
         </div>
         <div class="error" *ngIf="isControlInvalid('workers')">
-            Ошибка
+            Введены некоретные данные 
         </div>
 
         <button class="btn" type="button" (click)="onSaveClick()">

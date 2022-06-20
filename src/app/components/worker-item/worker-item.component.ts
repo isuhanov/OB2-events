@@ -26,22 +26,9 @@ export class WorkerItemComponent implements OnInit {
   @Input()
   public salary: number = 0;
 
-  @Output()
-  public onDelete = new EventEmitter();
-
   constructor(private dbconnection: DbconnectionService) { }
 
   ngOnInit(): void {
-  }
-
-  public onClickeDelete(): void {
-    this.dbconnection.deleteWorker(this.id).then((err) => {
-      if (!err) {
-        this.onDelete.emit();
-      } else {
-        console.log('Что-то пошло не так');
-      }
-    });
   }
 
 }

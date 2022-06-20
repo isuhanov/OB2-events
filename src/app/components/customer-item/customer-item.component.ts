@@ -12,7 +12,7 @@ export class CustomerItemComponent implements OnInit {
   @Input()
   public index: number = 0;
   @Input()
-  public id: number = 0;
+  public id: number | null = 0;
   @Input()
   public customerName: string = '';
   @Input()

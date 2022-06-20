@@ -21,12 +21,14 @@ export class WorkerFormComponent implements OnInit {
     bd: new FormControl('',
                         [
                           Validators.required,
+                          Validators.pattern(/\d\d\d\d-\d\d-\d\d/)
                         ]),
     phone: new FormControl('', 
                           [
                             Validators.required,
                             Validators.minLength(11),
-                            Validators.maxLength(11)
+                            Validators.maxLength(11),
+                            Validators.pattern(/8\d{10}/)
                           ]),
     email: new FormControl('',
                           [

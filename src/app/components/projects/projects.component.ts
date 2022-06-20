@@ -10,7 +10,7 @@ import { DbconnectionService } from 'src/app/lib/dbconnection.service';
 })
 export class ProjectsComponent implements OnInit {
 
-  public typeProject: FormControl = new FormControl('Все');
+  public typeProject: FormControl = new FormControl('');
 
   public projects: readonly Project[] = [];
   public isExists: boolean = true;

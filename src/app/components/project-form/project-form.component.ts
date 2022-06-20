@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { sequenceEqual, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Customer, Project, Worker } from 'src/app/domain';
 import { DbconnectionService } from 'src/app/lib/dbconnection.service';
 
@@ -19,10 +19,12 @@ export class ProjectFormComponent implements OnInit {
       Validators.maxLength(150)
     ]),
     crDate: new FormControl('', [
-      Validators.required
+      Validators.required,
+      Validators.pattern(/\d\d\d\d-\d\d-\d\d/)
     ]),
     deadline: new FormControl('', [
-      Validators.required
+      Validators.required,
+      Validators.pattern(/\d\d\d\d-\d\d-\d\d/)
     ]),
     price: new FormControl('', [
       Validators.required,
@@ -35,7 +37,7 @@ export class ProjectFormComponent implements OnInit {
     customerName: new FormControl('', [
       Validators.required
     ]),
-    status: new FormControl('', [
+    status: new FormControl(null, [
       Validators.required
     ]),
     workers: new FormControl([], [
@@ -46,13 +48,14 @@ export class ProjectFormComponent implements OnInit {
   public workers: readonly Worker[] = [];
   public customers: readonly Customer[] = [];
   public projectCustomer: Customer = {
-    customer_id: -1,
+    customer_id: null,
     customer_name: '',
     phone: '',
     email: '',
     adress: ''
   };
-
+  
+  public selectWorkers: number[] | null = null;
 
   public isUpdated: boolean = false;
   public projectId: number = 0;
@@ -77,6 +80,7 @@ export class ProjectFormComponent implements OnInit {
                 status: project[0].status
               })
               this.workers = selectWorkers;
+              this.selectWorkers = selectWorkers.map(worker => worker.worker_id);
               this.projectCustomer = customer[0];
             })
           });

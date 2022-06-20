@@ -6,7 +6,7 @@
             <input type="text" class="input" formControlName="theme" id="theme">
         </div>
         <div class="error" *ngIf="isControlInvalid('theme')">
-            Ошибка
+            Введены некоретные данные 
         </div>
 
         <div class="field">
@@ -14,7 +14,7 @@
             <input class="input" type="text" formControlName="timeStart" id="timeStart">
         </div>
         <div class="error" *ngIf="isControlInvalid('timeStart')">
-            Ошибка
+            Введены некоретные данные 
         </div>
 
         <div class="field">
@@ -22,7 +22,7 @@
             <input class="input" type="text" formControlName="timeEnd" id="timeEnd">
         </div>
         <div class="error" *ngIf="isControlInvalid('timeEnd')">
-            Ошибка
+            Введены некоретные данные 
         </div>
 
         <div class="field">
@@ -30,32 +30,32 @@
             <input class="input" type="text" formControlName="place" id="place">
         </div>
         <div class="error" *ngIf="isControlInvalid('place')">
-            Ошибка
+            Введены некоретные данные 
         </div>
 
         <div class="field">
             <label class="label" for="projectId">Проект:</label>
             <select formControlName="projectId" [(ngModel)]="eventProject.project_id" name="projectId" id="projectId">
-                <option disabled [ngValue]="-1">Выберите проект</option>
+                <option disabled [ngValue]="null">Выберите проект</option>
                 <option *ngFor="let project of projects" [ngValue]="project.project_id">
                     {{ project.project_id }}. {{ project.project_name }}
                 </option>
             </select>
         </div>
         <div class="error" *ngIf="isControlInvalid('projectId')">
-            Ошибка
+            Введены некоретные данные 
         </div>
 
         <div class="field">
             <label class="label" for="workers">Сотрудники:</label>
-            <select multiple formControlName="workers" ngModel="[]" name="workers" id="workers">
-                <option *ngFor="let worker of workers" [ngValue]="worker.worker_id">
+            <select multiple formControlName="workers" [ngModel]="selectWorkers" name="workers" id="workers">
+                <option *ngFor="let worker of workers" [ngValue]="worker.worker_id" [disabled]="selectWorkers">
                     {{ worker.worker_id }}. {{ worker.FIO }}
                 </option>
             </select>
         </div>
         <div class="error" *ngIf="isControlInvalid('workers')">
-            Ошибка
+            Введены некоретные данные 
         </div>
 
         <button class="btn" type="button" (click)="onSaveClick()">
